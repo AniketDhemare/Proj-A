@@ -1,6 +1,10 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+on: 
+  push:
+  pull_request:
+    types: [opened, closed]
+
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
@@ -16,3 +20,13 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+
+  Date-On-Pullrequests:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Print date 
+        run: |
+          echo "Current Date: $(date)"
+          echo "Date - PR created: ${GITHUB_EVENT_PULL_REQUEST_CREATED_AT}"
+          echo "Date - PR closed: ${GITHUB_EVENT_PULL_REQUEST_CLOSED_AT}" 
