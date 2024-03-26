@@ -20,6 +20,7 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+      - run: echo "end"
 
   Date-On-Pullrequests:
     runs-on: ubuntu-latest
@@ -27,8 +28,9 @@ jobs:
     steps:
       - name: Date on Pull Request Closed
         if: github.event.action == 'opened'
-        run: echo "Date - PR Opened: $(date)"
+        run: |
+          echo "Date - PR Opened: $(date)"
       - name: Date on Pull Request Closed
         if: github.event.pull.request.merged
-        run: echo "Date - PR Merged: $(date)"
-          
+        run: |
+          echo "Date - PR Merged: $(date)" 
