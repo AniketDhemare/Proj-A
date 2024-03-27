@@ -26,11 +26,11 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
     steps:
-      - name: Date on Pull Request Closed
+      - name: Date on Pull Request Opened
         if: github.event.action == 'opened'
         run: |
           echo "Date - PR Opened: $(date)"
-      - name: Date on Pull Request Closed
+      - name: Date on Pull Request Merged
         if: github.event.action == 'closed' && github.event.pull_request.merged
         run: |
           echo "Date - PR Merged: $(date)" 
