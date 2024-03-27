@@ -31,6 +31,6 @@ jobs:
         run: |
           echo "Date - PR Opened: $(date)"
       - name: Date on Pull Request Closed
-        if: github.event.pull.request.merged
+        if: github.event.action == 'closed' && github.event.pull_request.merged
         run: |
           echo "Date - PR Merged: $(date)" 
